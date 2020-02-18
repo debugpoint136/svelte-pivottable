@@ -1,5 +1,4 @@
 {
-  "renderers": {},
   "data": [
     {
       "_id": "TGTEXPJGGJG4K",
@@ -1250,8 +1249,8 @@
       "mouseRowSpan": 1
     }
   ],
-  "rows": ["Exposure", "Assay"],
-  "cols": ["Tissue", "Age"],
+  "rows": ["Lab", "Exposure", "Assay"],
+  "cols": ["Tissue", "Age", "Sex"],
   "hiddenFromDragDrop": [
     "_id",
     "_index",
@@ -1304,18 +1303,5 @@
     "assay_starting_nucleic_acid",
     "assay_category",
     "assay_protocol_url"
-  ],
-  "unusedOrientationCutoff": null,
-  "aggregators": {},
-  "vals": [],
-  "aggregatorName": "Count Experiments",
-  "sorters": {},
-  "valueFilter": {},
-  "rowOrder": "key_a_to_z",
-  "colOrder": "key_a_to_z",
-  "derivedAttributes": {},
-  "rendererName": "Table",
-  "hiddenAttributes": [],
-  "hiddenFromAggregators": [],
-  "menuLimit": 500
+  ]
 }

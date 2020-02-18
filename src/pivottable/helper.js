@@ -1,5 +1,4 @@
 export const spanSize = function (arr, i, j) {
-  console.log(arr, i, j);
   let x;
   if (i !== 0) {
     let asc,

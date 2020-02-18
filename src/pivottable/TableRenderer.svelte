@@ -14,7 +14,9 @@
   <thead>
     {#each colAttrs as c, j}
       <tr key={`colAttr${j}`}>
-        <th colSpan={rowAttrs.length} rowSpan={colAttrs.length} />
+        {#if (j === 0 && rowAttrs.length !== 0)}
+          <th colSpan={rowAttrs.length} rowSpan={colAttrs.length} />
+        {/if}
         <th class="pvtAxisLabel">{c}</th>
         {#each colKeys as colKey, i}
           {#if spanSize(colKeys, i, j) !== -1}
@@ -23,23 +25,28 @@
               key={`colKey${i}`}
               colSpan={spanSize(colKeys, i, j)}
               rowSpan={j === colAttrs.length - 1 && rowAttrs.length !== 0 ? 2 : 1}>
-              {#if colAttrs.length > 1 && colAttrs.length - 1 === j}
+              {colKey[j]}
+              <!-- {#if colAttrs.length > 1 && colAttrs.length - 1 === j}
                 <div class="rotate text-xs">{colKey[j]}</div>
-              {:else}{colKey[j]}{/if}
+              {:else}{colKey[j]}{/if} -->
             </th>
           {/if}
         {/each}
       </tr>
     {/each}
-
+    <tr>
     {#each rowAttrs as r, i}
-      <th class="pvtAxisLabel" key={`rowAttr${i}`}>{r}</th>
+          <th class="pvtAxisLabel" key={`rowAttr${i}`}>{r}</th>
     {/each}
+    </tr>
+    
   </thead>
 
   <tbody>
+    
     {#each rowKeys as rowKey, i}
       <tr key={`rowKeyRow${i}`}>
+        
         {#each rowKey as txt, j}
           {#if spanSize(rowKeys, i, j) !== -1}
             <th
@@ -48,17 +55,18 @@
               rowSpan={spanSize(rowKeys, i, j)}
               colSpan={j === rowAttrs.length - 1 && colAttrs.length !== 0 ? 2 : 1}>
               {#if rowAttrs.length !== 1 && spanSize(rowKeys, i, j) > 3}
-                <div className="rotate90">{txt}</div>
+                <div class="rotate90">{txt}</div>
               {:else}{txt}{/if}
             </th>
           {/if}
         {/each}
-      </tr>
-      {#each colKeys as colKey, j}
+        {#each colKeys as colKey, j}
         <td class={`pvtVal pvtValue`} key={`pvtVal${i}-${j}`} on:click={() => alert(pivotData.getAggregator(rowKey, colKey).value())}>
           {pivotData.getAggregator(rowKey, colKey).value()}
         </td>
       {/each}
+      </tr>
+      
     {/each}
   </tbody>
 </table>

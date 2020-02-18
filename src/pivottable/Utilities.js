@@ -583,24 +583,7 @@ Data Model class
       console.log(this.props);
       PropTypes.checkPropTypes(PivotData.propTypes, this.props, 'prop', 'PivotData');
 
-      // this.aggregator = this.props.aggregators[this.props.aggregatorName](this.props.vals);
-      this.aggregator = function (formatter = usFmtInt) {
-          return {
-            count: 0,
-            push(record) {
-              if (record.hasOwnProperty('count')) {
-                this.count = this.count + record.count;
-              } else {
-                this.count = this.count + 1
-              }
-              
-            },
-            value() {
-              return this.count;
-            },
-            format: formatter
-          };
-        };
+      this.aggregator = this.props.aggregators[this.props.aggregatorName](this.props.vals);
       
       this.tree = {};
       this.rowKeys = [];
